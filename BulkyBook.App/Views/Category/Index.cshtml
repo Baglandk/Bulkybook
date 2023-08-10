@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Category>
+@{
+}
+@if(TempData["success"]!=null)
+{
+    <h2>@TempData["success"]</h2>s
+}
+<div>
+    <div>
+        <div class="col-6">
+            <h1>Table</h1>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                Create Category
+            </a>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-striped" style="width=100%">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Display Order</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.DisplayOrder
+                </td>
+                <td>
+                    <div role="group">
+                        <a asp-controller="Category" asp-action="Edit" 
+                        asp-route-id="@item.Id">Edit</a>
+                    </div>
+                    <div role="group">
+                        <a asp-controller="Category" asp-action="Delete"
+                           asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
